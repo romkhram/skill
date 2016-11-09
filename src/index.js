@@ -9,11 +9,21 @@ const app = express();
 //   	);
 // });
 
-
-app.get('/abplus', function(req, res) {
-  const sum = (+req.query.a || 0) + (+req.query.b || 0);
-  res.send(sum.toString());
+app.get('/dz', function (req, res) {
+	const sname = req.query.fullname;
+	const arrname = sname.split(' ');
+	const lname = arrname.length - 1;
+if (lname > 2, lname < 0){
+res.send('Invalid fullname');
+}else if(lname == 2){	
+  res.send(arrname[lname] + " " + arrname[lname - 1].substr(0, 1) + ". " + arrname[lname - 2].substr(0, 1) + ".");
+}else if(lname == 1){	
+  res.send(arrname[lname] + " " + arrname[lname - 1].substr(0, 1) + ".");
+}else if(lname == 0){	
+  res.send(arrname[lname]);
+}
 });
+
 
 app.listen(4000, function () {
   console.log('Example app listening on port 4000!');
